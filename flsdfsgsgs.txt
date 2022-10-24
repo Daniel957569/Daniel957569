@@ -1,4 +1,3 @@
-" vim-bootstrap 2022-08-29 15:57:29
 
 "*****************************************************************************
 "" Vim-Plug core
@@ -10,7 +9,7 @@ else
   let curl_exists=expand('curl')
 endif
 
-let g:vim_bootstrap_langs = "go,javascript,rust,typescript"
+let g:vim_bootstrap_langs = "go,javascript,typescript"
 let g:vim_bootstrap_editor = "nvim"				" nvim or vim
 let g:vim_bootstrap_theme = "molokai"
 let g:vim_bootstrap_frams = ""
@@ -47,13 +46,12 @@ Plug 'vim-scripts/grep.vim'
 Plug 'vim-scripts/CSApprox'
 Plug 'Raimondi/delimitMate'
 Plug 'majutsushi/tagbar'
-Plug 'dense-analysis/ale'
 Plug 'Yggdroot/indentLine'
 Plug 'editor-bootstrap/vim-bootstrap-updater'
 Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
 Plug 'neoclide/vim-jsx-improve'
 Plug 'Rigellute/rigel'
-Plug 'nanozuki/tabby.nvim'
+" Plug 'nanozuki/tabby.nvim'
 Plug 'simrat39/rust-tools.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
@@ -66,23 +64,26 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'ellisonleao/gruvbox.nvim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'EdenEast/nightfox.nvim'
+Plug 'ThePrimeagen/vim-be-good'
+Plug 'kevinhwang91/nvim-hlslens'
+Plug 'bluz71/vim-moonfly-colors'
+Plug 'bfrg/vim-cpp-modern'
+Plug 'feline-nvim/feline.nvim', { 'branch': '0.5-compat' }
 
 
-
-" if has('nvim')
-  " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" else
-  " Plug 'Shougo/deoplete.nvim'
-  " Plug 'roxma/nvim-yarp'
-  " Plug 'roxma/vim-hug-neovim-rpc'
-" endif
+"if has('nvim')
+"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"else
+ " Plug 'Shougo/deoplete.nvim'
+ " Plug 'roxma/nvim-yarp'
+  "Plug 'roxma/vim-hug-neovim-rpc'
+"endif
 
 
 " For improved UI
 Plug 'junegunn/fzf'
 
 
-Plug 'romgrk/barbar.nvim'
 Plug 'romgrk/barbar.nvim'
 Plug 'rust-lang/rust.vim',         { 'for': 'rust' }
 
@@ -123,7 +124,6 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 
 "" Snippets
-Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 "*****************************************************************************
@@ -139,7 +139,6 @@ Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
 "" Javascript Bundle
 Plug 'jelera/vim-javascript-syntax'
 
-
 " rust
 " Vim racer
 Plug 'racer-rust/vim-racer'
@@ -148,7 +147,7 @@ Plug 'racer-rust/vim-racer'
 Plug 'rust-lang/rust.vim'
 
 " Async.vim
-Plug 'prabirshrestha/async.vim'
+ Plug 'prabirshrestha/async.vim'
 
 " Vim lsp
 Plug 'prabirshrestha/vim-lsp'
@@ -157,7 +156,7 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete.vim'
 
 " Asyncomplete lsp.vim
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
+"Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
 
 " typescript
@@ -181,7 +180,7 @@ call plug#end()
 filetype plugin indent on
 
 
-let g:airline_powerline_fonts = 1
+ let g:airline_powerline_fonts = 1
 "*****************************************************************************
 "" Basic Setup
 "*****************************************************************************"
@@ -238,11 +237,11 @@ set ruler
 set number
 
 
-" set termguicolors
-hi StatusLineTerm ctermbg=24 ctermfg=254 guibg=#004f87 guifg=#e4e4e4
-hi StatusLineTermNC ctermbg=252 ctermfg=238 guibg=#d0d0d0 guifg=#444444
-let no_buffers_menu=1
-colorscheme nightfox
+ set termguicolors
+ hi StatusLineTerm ctermbg=24 ctermfg=254 guibg=#004f87 guifg=#e4e4e4
+ hi StatusLineTermNC ctermbg=252 ctermfg=238 guibg=#d0d0d0 guifg=#444444
+ let no_buffers_menu=1
+colorscheme carbonfox
 " night-owl
 set modifiable
 set background=dark
@@ -277,7 +276,7 @@ else
 endif
 
 "" Status bar
-set laststatus=2
+ set laststatus=2
 
 "" Use modeline overrides
 set modeline
@@ -287,24 +286,24 @@ set title
 set titleold="Terminal"
 set titlestring=%F
 
-set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
+ set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
 
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
-if exists("*fugitive#statusline")
+ if exists("*fugitive#statusline")
   set statusline+=%{fugitive#statusline()}
-endif
+ endif
 
 " vim-airline
 " let g:airline_theme = 'tagbar'
-let g:airline#extensions#branch#enabled = 1
- let g:airline#extensions#ale#enabled = 1
- let g:airline#extensions#tabline#enabled = 1
- let g:airline#extensions#tagbar#enabled = 1
- let g:airline_skip_empty_sections = 1
+" let g:airline#extensions#branch#enabled = 1
+" let g:airline#extensions#ale#enabled = 1
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tagbar#enabled = 1
+" let g:airline_skip_empty_sections = 1
 
 "*****************************************************************************
 "" Abbreviations
@@ -331,13 +330,15 @@ let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
 let g:NERDTreeWinSize = 50
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite,*node_modules/
 nnoremap <silent> <F6> :NERDTreeToggle<CR>
+nnoremap <silent> <F4> :NERDTreeFocus<CR>
 nnoremap <silent> <F5> :tab term<CR>
 nnoremap <A-x> :call CocAction ('jumpDefinition')<CR>
 nnoremap <silent> <C-s> :w <CR>
+nnoremap <silent> <S-q> :nohlsearch <CR>
 :nnoremap <C-s> :w<CR>
 inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
-nnoremap <silent> <F9> :-tabnext <CR>
-nnoremap <silent> <F10> :+tabnext <CR>
+nnoremap <silent> <F9> :vertical resize -5 <CR>
+nnoremap <silent> <F10>  <CR> 
 nnoremap <silent> <F8> :tabnew <CR>
 nnoremap <silent> <C-x> :Telescope find_files<CR>
 nnoremap <silent> <C-z> :Telescope <CR>
@@ -353,7 +354,7 @@ nnoremap <silent> <C-z> :Telescope <CR>
 
 let g:TagbarArrowExpandable="+"
 let g:TagbarArrowCollapsible="-"
-let g:tagbar_use_cache = 0
+" let g:tagbar_use_cache = 0
 
 " grep.vim
 nnoremap <silent> <leader>f :Rgrep<CR>
@@ -487,6 +488,7 @@ let g:ale_linters = {}
 
 " Tagbar
 nmap <silent> <F7> :TagbarToggle<CR>
+nmap <silent> <F3> :TagbarFocus<CR>
 let g:tagbar_autofocus = 1
 
 " Disable visualbell
@@ -572,6 +574,7 @@ let g:go_highlight_trailing_whitespace_error = 0
 let g:go_highlight_extra_types = 1
 
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
+
 
 " augroup completion_preview_close
   " autocmd!
@@ -683,5 +686,5 @@ endif
 
 lua << EOF 
 require('telescope').setup{ 
-  defaults = { file_ignore_patterns = {"target"} }
+  defaults = { file_ignore_patterns = {"target", "CMakeFiles"} }
   }
