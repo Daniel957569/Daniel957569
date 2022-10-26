@@ -1,8 +1,4 @@
-" vim-bootstrap 2022-08-29 15:57:29
 
-"*****************************************************************************
-"" Vim-Plug core
-"*****************************************************************************
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
 if has('win32')&&!has('win64')
   let curl_exists=expand('C:\Windows\Sysnative\curl.exe')
@@ -28,12 +24,7 @@ if !filereadable(vimplug_exists)
   autocmd VimEnter * PlugInstall
 endif
 
-" Required:
 call plug#begin(expand('~/.config/nvim/plugged'))
-
-"*****************************************************************************
-"" Plug install packages
-"*****************************************************************************
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'tpope/vim-commentary'
@@ -69,7 +60,6 @@ Plug 'EdenEast/nightfox.nvim'
 
 
 
-" For improved UI
 Plug 'junegunn/fzf'
 
 
@@ -78,7 +68,6 @@ Plug 'romgrk/barbar.nvim'
 Plug 'rust-lang/rust.vim',         { 'for': 'rust' }
 
 call plug#end()
-" ...
 
 let g:deoplete#enable_at_startup = 1
 
