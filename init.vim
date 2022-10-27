@@ -26,7 +26,7 @@ if !filereadable(vimplug_exists)
 
   autocmd VimEnter * PlugInstall
 endif
-
+:set paste
 " Required:
 call plug#begin(expand('~/.config/nvim/plugged'))
 
