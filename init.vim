@@ -1,4 +1,3 @@
-
 "*****************************************************************************
 "" Vim-Plug core
 "*****************************************************************************
@@ -26,7 +25,6 @@ if !filereadable(vimplug_exists)
 
   autocmd VimEnter * PlugInstall
 endif
-:set paste
 " Required:
 call plug#begin(expand('~/.config/nvim/plugged'))
 
@@ -39,8 +37,8 @@ Plug 'tpope/vim-commentary'
 Plug 'https://github.com/tc50cal/vim-terminal' " Vim Terminal
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/grep.vim'
 Plug 'vim-scripts/CSApprox'
@@ -51,9 +49,8 @@ Plug 'editor-bootstrap/vim-bootstrap-updater'
 Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
 Plug 'neoclide/vim-jsx-improve'
 Plug 'Rigellute/rigel'
-" Plug 'nanozuki/tabby.nvim'
+Plug 'nanozuki/tabby.nvim'
 Plug 'simrat39/rust-tools.nvim'
-Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'ryanoasis/vim-devicons'
@@ -67,9 +64,17 @@ Plug 'EdenEast/nightfox.nvim'
 Plug 'ThePrimeagen/vim-be-good'
 Plug 'kevinhwang91/nvim-hlslens'
 Plug 'bluz71/vim-moonfly-colors'
+Plug 'tribela/vim-transparent'
 Plug 'bfrg/vim-cpp-modern'
-Plug 'feline-nvim/feline.nvim', { 'branch': '0.5-compat' }
-
+Plug 'folke/trouble.nvim'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'sharkdp/fd'
+Plug 'BurntSushi/ripgrep'
+Plug 'ThePrimeagen/git-worktree.nvim'
+Plug 'neovim/node-host', { 'do': 'npm install' }
+Plug 'billyvg/tigris.nvim', { 'do': './install.sh' }
+Plug 'BurntSushi/ripgrep'
 
 "if has('nvim')
 "  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -82,6 +87,8 @@ Plug 'feline-nvim/feline.nvim', { 'branch': '0.5-compat' }
 
 " For improved UI
 Plug 'junegunn/fzf'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
 
 
 Plug 'romgrk/barbar.nvim'
@@ -222,12 +229,12 @@ else
 endif
 
 
-
 " session management
 let g:session_directory = "~/.config/nvim/session"
 let g:session_autoload = "no"
 let g:session_autosave = "no"
 let g:session_command_aliases = 1
+
 
 "*****************************************************************************
 "" Visual Settings
@@ -238,8 +245,7 @@ set number
 
 
  set termguicolors
- hi StatusLineTerm ctermbg=24 ctermfg=254 guibg=#004f87 guifg=#e4e4e4
- hi StatusLineTermNC ctermbg=252 ctermfg=238 guibg=#d0d0d0 guifg=#444444
+ 
  let no_buffers_menu=1
 colorscheme carbonfox
 " night-owl
@@ -278,6 +284,7 @@ endif
 "" Status bar
  set laststatus=2
 
+
 "" Use modeline overrides
 set modeline
 set modelines=10
@@ -296,6 +303,9 @@ nnoremap N Nzzzv
  if exists("*fugitive#statusline")
   set statusline+=%{fugitive#statusline()}
  endif
+
+
+
 
 " vim-airline
 " let g:airline_theme = 'tagbar'
@@ -583,6 +593,8 @@ autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 soft
   " endif
 " augroup END
 
+
+
 augroup go
 
   au!
@@ -635,6 +647,17 @@ au FileType rust nmap <leader>gd <Plug>(rust-doc)
 let g:yats_host_keyword = 1
 
 
+"" automatically enter insert mode on new neovim terminals
+augroup terminal
+  au TermOpen * startinsert
+augroup END
+
+"   " map jk to escape
+inoremap jk <Esc>
+tnoremap jk <C-\><C-n>
+
+hi NormalSB guibg=NONE ctermbg=NONE
+hi NormalNC guibg=NONE ctermbg=NONE
 
 "*****************************************************************************
 "*****************************************************************************
@@ -644,47 +667,14 @@ if filereadable(expand("~/.config/nvim/local_init.vim"))
   source ~/.config/nvim/local_init.vim
 endif
 
-"*****************************************************************************
-"" Convenience variables
-"*****************************************************************************
 
-" vim-airline
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-
-
-"if !exists('g:airline_powerline_fonts')
- "let g:airline#extensions#tabline#left_sep = ' '
-"let g:airline#extensions#tabline#left_alt_sep = '|'
-""  let g:airline_left_sep          = '▶'
- "let g:airline_left_alt_sep      = '»'
-  "let g:airline_right_sep         = '◀'
-  "let g:airline_right_alt_sep     = '«'
-  "let g:airline#extensions#branch#prefix     = '⤴' "➔, ➥, ⎇
-  "let g:airline#extensions#readonly#symbol   = '⊘'
-  "let g:airline#extensions#linecolumn#prefix = '¶'
-  "let g:airline#extensions#paste#symbol      = 'ρ'
-  "let g:airline_symbols.linenr    = '␊'
-  "let g:airline_symbols.branch    = '⎇'
-  "let g:airline_symbols.paste     = 'ρ'
-  "let g:airline_symbols.paste     = 'Þ'
-  "let g:airline_symbols.paste     = '∥'
-  "let g:airline_symbols.whitespace = 'Ξ'
-"else
- "" let g:airline#extensions#tabline#left_sep = ''
- "" let g:airline#extensions#tabline#left_alt_sep = ''
-  " powerline symbols
- "" let g:airline_left_sep = ''
-  "let g:airline_left_alt_sep = ''
-  "let g:airline_right_sep = ''
-  "let g:airline_right_alt_sep = ''
-  "let g:airline_symbols.branch = ''
-  "let g:airline_symbols.readonly = ''
-  "let g:airline_symbols.linenr = ''
-"endif
 
 lua << EOF 
-require('telescope').setup{ 
-  defaults = { file_ignore_patterns = {"target", "CMakeFiles", "cmake-build-debug"} }
-  }
+require('telescope').setup { 
+  defaults = { file_ignore_patterns = {"target", "CMakeFiles", "cmake-build-debug", "node_modules"} }
+}
+
+require('hlslens').setup()
+require('lualine').setup()
+require("telescope").load_extension("git_worktree")
+
