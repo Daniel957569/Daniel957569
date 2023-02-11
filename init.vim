@@ -1,3 +1,4 @@
+
 "*****************************************************************************
 "" Vim-Plug core
 "*****************************************************************************
@@ -31,24 +32,23 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "*****************************************************************************
 "" Plug install packages
 "*****************************************************************************
-Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
-Plug 'tpope/vim-commentary'
-Plug 'https://github.com/tc50cal/vim-terminal' " Vim Terminal
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'tpope/vim-fugitive'
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
-Plug 'airblade/vim-gitgutter'
-Plug 'vim-scripts/grep.vim'
-Plug 'vim-scripts/CSApprox'
-Plug 'Raimondi/delimitMate'
-Plug 'majutsushi/tagbar'
-Plug 'Yggdroot/indentLine'
-Plug 'editor-bootstrap/vim-bootstrap-updater'
-Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
-Plug 'neoclide/vim-jsx-improve'
-Plug 'Rigellute/rigel'
+ Plug 'scrooloose/nerdtree'
+ Plug 'jistr/vim-nerdtree-tabs'
+ Plug 'tpope/vim-commentary'
+ Plug 'https://github.com/tc50cal/vim-terminal' " Vim Terminal
+ Plug 'neoclide/coc.nvim', {'branch': 'release'}
+ Plug 'tpope/vim-fugitive'
+ Plug 'airblade/vim-gitgutter'
+ Plug 'vim-scripts/grep.vim'
+ Plug 'vim-scripts/CSApprox'
+ Plug 'Raimondi/delimitMate'
+ Plug 'majutsushi/tagbar'
+ Plug 'Yggdroot/indentLine'
+ Plug 'editor-bootstrap/vim-bootstrap-updater'
+ Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
+ Plug 'neoclide/vim-jsx-improve'
+ Plug 'Rigellute/rigel'
+
 Plug 'nanozuki/tabby.nvim'
 Plug 'simrat39/rust-tools.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
@@ -61,6 +61,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'ellisonleao/gruvbox.nvim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'EdenEast/nightfox.nvim'
+
 Plug 'ThePrimeagen/vim-be-good'
 Plug 'kevinhwang91/nvim-hlslens'
 Plug 'bluz71/vim-moonfly-colors'
@@ -69,12 +70,12 @@ Plug 'bfrg/vim-cpp-modern'
 Plug 'folke/trouble.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'sharkdp/fd'
 Plug 'BurntSushi/ripgrep'
 Plug 'ThePrimeagen/git-worktree.nvim'
 Plug 'neovim/node-host', { 'do': 'npm install' }
 Plug 'billyvg/tigris.nvim', { 'do': './install.sh' }
 Plug 'BurntSushi/ripgrep'
+Plug 'sharkdp/fd'
 
 "if has('nvim')
 "  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -87,11 +88,11 @@ Plug 'BurntSushi/ripgrep'
 
 " For improved UI
 Plug 'junegunn/fzf'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 
 
-Plug 'romgrk/barbar.nvim'
+" Plug 'romgrk/barbar.nvim'
 Plug 'rust-lang/rust.vim',         { 'for': 'rust' }
 
 call plug#end()
@@ -139,7 +140,7 @@ Plug 'honza/vim-snippets'
 
 " go
 "" Go Lang Bundle
-Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
+" Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
 
 
 " javascript
@@ -671,10 +672,14 @@ endif
 
 lua << EOF 
 require('telescope').setup { 
-  defaults = { file_ignore_patterns = {"target", "CMakeFiles", "cmake-build-debug", "node_modules"} }
+  defaults = { file_ignore_patterns = {"target", "CMakeFiles", "cmake-build-debug", "node_modules", "%.pdf", "%.ttf", "%.png"} }
 }
 
 require('hlslens').setup()
 require('lualine').setup()
 require("telescope").load_extension("git_worktree")
+require('nvim-treesitter.configs').setup {
+  highlight = { enable = true },
+  indent = { enable = true }
+}
 
