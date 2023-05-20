@@ -1,12 +1,12 @@
 {
-    "coc.preferences.formatOnSaveFiletypes": ["*"],
-    "prettier.singleQuote": true,
+    // "coc.preferences.formatOnSaveFiletypes": [ "*"],
+    "coc.preferences.formatOnSave": true,
     "javascript.autoClosingTags": true,
     "typescript.autoClosingTags": true,
     "codeLens.enable": false,
     "diagnostic.virtualText": true,
     "diagnostic.virtualTextCurrentLineOnly": false,
     "semanticTokens.enable": true,
-    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.1/clangd_15.0.1/bin/clangd",
-    "prettier.tabWidth": 8
+    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.6/clangd_15.0.6/bin/clangd",
+    "snippets.ultisnips.pythonPrompt": false,
 }
