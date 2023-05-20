@@ -77,6 +77,8 @@ Plug 'billyvg/tigris.nvim', { 'do': './install.sh' }
 Plug 'BurntSushi/ripgrep'
 Plug 'sharkdp/fd'
 
+
+
 "if has('nvim')
 "  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "else
@@ -192,6 +194,8 @@ filetype plugin indent on
 "*****************************************************************************
 "" Basic Setup
 "*****************************************************************************"
+
+
 "" Encoding
 set encoding=utf-8
 set fileencoding=utf-8
@@ -669,11 +673,11 @@ if filereadable(expand("~/.config/nvim/local_init.vim"))
 endif
 
 
-
 lua << EOF 
 require('telescope').setup { 
-  defaults = { file_ignore_patterns = {"target", "CMakeFiles", "cmake-build-debug", "node_modules", "%.pdf", "%.ttf", "%.png"} }
+  defaults = { file_ignore_patterns = {"target", "CMakeFiles", "cmake-build-debug", "node_modules", "%.pdf", "%.ttf", "%.png", "%.mp3"} }
 }
+
 
 require('hlslens').setup()
 require('lualine').setup()
@@ -682,4 +686,6 @@ require('nvim-treesitter.configs').setup {
   highlight = { enable = true },
   indent = { enable = true }
 }
+
+
 
